@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Student Loan Data</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://d3js.org/d3.v7.min.js">
+
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js">
+
+	</script>
+	<link rel="shortcut icon" type="image/png" href="favicon.png" />
+</head>
+
+<body>
+	<!--<div> Navbar</div>-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand"><span class="navbar-icon"></span>Student Loan Data</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href= "#loan-map">Map</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#carouselExampleIndicators">College Stats</a>
+      <li class="nav-item">
+        <a class="nav-link" href="/more-info.html">Is a College Loan For You?</a>  
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- Header + Short Blurb-->
+<header class="main container-fluid">
+  <div class="main-blurb">
+    <h2 class="card-title">US Student Loan Debt</h2>
+    <p class="card-text">The average college debt among student loan borrowers in America is $32,731.</p>
+    <a href="#loan-map" class="btn btn-primary">See the loan map</a>
+  </div>
+</header>
+
+  <!--Map--> 
+    <h3 id="loan-map">Average Loan Originations for U.S. Colleges</h3>
+    <div id="map" class="map-fluid" class="mx-auto" style="width: 100vw">
+      <div id="info"><em>Hover over the map to find out average loan types.</em></div>
+    </div>
+   
+
+    <!-- College Stats - Carousel -->
+    <div id="basic stats"></div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="container">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img class="d-block w-100" src="http://www.credit.com/wp-content/uploads/2019/06/average-education-costs.png" alt="First slide">
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100" src="http://www.credit.com/wp-content/uploads/2019/06/average-student-loan-debt-monthly-payments.png" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="http://res.cloudinary.com/value-penguin/image/upload/c_limit,dpr_1.0,f_auto,h_1600,q_auto,w_1600/v1/Number_of_Student_Loan_Borrowers_khfmd4" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="https://s3.us-west-2.amazonaws.com/webresources.savingforcollege.com/images/articles/article_image_20180702163237_avg_student_loan_debt.png" alt="Second slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+          </a>
+        </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+  <!--College Loan Right For You? Card -->
+  <div class="card quiz" " style="width: 40rem;">
+    <div class="card-body">
+      <h5 class="card-title">What Type of Student Loan Repayment Plan is Best for You?</h5>
+      <!-- <h6 class="card-subtitle mb-2 text-muted">Additional line about student loans</h6> -->
+      <form  id="form1">
+        <br>
+        <p>How important is a lower monthly payment?</p>
+        <label><input type="radio" name="monthly" id="need" value="graduated" />It is the most important!</label>
+        <label><input type="radio" name="monthly" id="mid" value="standard" />It's pretty important.</label>
+        <label><input type="radio" name="monthly" id="not" value="extended" />It's more important for interest rates to be lower.</label>
+        <br>
+        <p>What is your philosophy about work/money?</p>
+        <label><input type="radio" name="philo" id="savvy" value="graduated" />I need to be the most financially savvy!</label>
+        <label><input type="radio" name="philo" id="steady" value="standard" />I just want to remain steady in my career.</label>
+        <label><input type="radio"  name="philo" id="explore" value="extended" />I want to explore careers.</label>
+        <br>
+        <p>What are your current student loans?</p>
+        <label><input type="radio" name="current" id="fednow" value="graduated" />I have federal loans I want to pay off.</label>
+        <label><input type="radio" name="current" id="mix" value="standard" />I have a mix of federal and private - need to streamline payments.</label>
+        <label><input type="radio" name="current" id="fedlater" value="extended" />I have federal loans and am okay with a longer repayment.</label>
+
+
+        <button type="submit" value="Submit">Submit</button>
+      </form>
+
+      <p id="response">Your repayment plan: <strong><span id="answer"></span></strong></p>
+      </div>
+    </div>
+
+<div class="container-fluid footer">
+  <p>© 2021. Made with ❤️ & <span class="uc-logo"></span> by Nisha Shibu, Neha Desaraju, & Thara Joseph.
+  <br>Special thanks to Citi Bank and <a href="https://howmuch.net/sources/university-with-the-most-student-loan-originations-in-every-state">howmuch.net</a>.
+  </p>
+</div>
+
+
+ 
+  <!--JS stuff-->
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ <script src="quiz.js"></script>
+ <script>
+      //Width and height of map
+      var width = window.innerWidth;
+      var height = 500;
+
+      // D3 Projection
+      var projection = d3.geoAlbersUsa()
+                .translate([width/2, height/2])    // translate to center of screen
+                .scale([1000]);          // scale things down so see entire US
+              
+      // Define path generator
+      var path = d3.geoPath()               // path generator that will convert GeoJSON to SVG paths
+              .projection(projection);  // tell path generator to use albersUsa projection
+
+      // define dollar formatter
+      var numFormat = d3.format(",.2f")
+      
+      //Create SVG element and append map to the SVG
+      var svg = d3.select("#map")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+      var info = d3.select("#info")
+
+      // load geoJSON data
+      d3.json("us-states.json").then(function(states) {
+        svg.selectAll("path")
+          .data(states.features)
+          .enter()
+          .append("path")
+          .attr("d", path)
+          .style("stroke", "#fff")
+          .style("stroke-width", "1")
+          .style("fill", "lightgray")
+
+          d3.csv("loan_debt_by_school.csv").then(function(schools) {
+
+            // create the color gradient
+            var color = d3.scaleLinear()
+              .domain([d3.min(schools, function(d) { return d.avg_loans_originated }), d3.max(schools, function(d) { return d.avg_loans_originated })])
+              .range(["beige", "teal"]);
+
+
+            // add a legend
+            svg.append("g")
+              .attr("class", "legendLinear")
+              .attr("transform", "translate(40, 490)");
+
+            var legendLinear = d3.legendColor()
+              .shapeWidth(30)
+              .cells(5)
+              .orient('horizontal')
+              .scale(color)
+              .labelFormat(".2s");
+
+            svg.select(".legendLinear")
+              .call(legendLinear);
+
+            // add the points
+            svg.selectAll("circle")
+              .data(schools)
+              .enter()
+              .append("circle")
+              .attr("cx", function(d) {
+                return projection([d.lon, d.lat])[0];
+              })
+              .attr("cy", function(d) {
+                return projection([d.lon, d.lat])[1];
+              })
+              .attr("r", 3)
+              .style("fill", function(d) {
+                return color(d.avg_loans_originated);
+              })
+              .style("opacity", 1)
+              .on("mouseover", function(e, d) {
+                d3.select(this)
+                  .style("stroke", "white")
+                  .style("stroke-width", "2px");
+                var t = "<strong>" + d.School + "</strong><br><em>" + d.City + ", " + d.State + 
+                    "</em><br>Average Loan Amount: $" + numFormat(d.avg_loans_originated);
+                info.html(t).style("opacity", 1)
+              })
+              .on("mouseout", function(e, d) {
+                d3.select(this)
+                  .style("stroke", "none");
+                info.html("<em>Hover over the map to find out more.</em>")
+              });
+          })
+      })
+
+    </script>
+ 
+ 
+ 
+ </body>
+</html>

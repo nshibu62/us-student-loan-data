@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>What Type of Loan...</title>
+<style>
+body {
+background-color: lightblue;
+font-family: Helvetica;
+}
+
+#main {
+width: 60%;
+border: 1px gray solid;
+margin: auto;
+padding: 10px;
+background-color: white;
+border-radius: 10px;
+}
+
+#header {
+margin-top: 0;
+border: 2px solid black;
+padding: 5px;
+height: 180px;
+}
+  
+#response {
+    display: none;
+  }
+
+label {
+width: 150px;
+display: inline-block;
+}
+
+button {
+display: block;
+margin-top: 20px;
+
+}
+
+
+</style>
+</head>
+<body>
+<div id="main">
+<div id="header"><h1>What Type of Student Loan Repayment Plan is Best for You?</h1></div>
+
+<form  id="form1">
+<p>How important is a lower monthly payment?</p>
+<label><input type="radio" name="monthly" id="need" value="graduated" />It is the most important!</label>
+<label><input type="radio" name="monthly" id="mid" value="standard" />It's pretty important.</label>
+<label><input type="radio" name="monthly" id="not" value="extended" />It's more important for interest rates to be lower.</label>
+
+<p>What is your philosophy about work/money?</p>
+<label><input type="radio" name="philo" id="savvy" value="graduated" />I need to be the most financially savvy!</label>
+<label><input type="radio" name="philo" id="steady" value="standard" />I just want to remain steady in my career.</label>
+<label><input type="radio"  name="philo" id="explore" value="extended" />I want to explore careers.</label>
+
+<p>What are your current student loans?</p>
+<label><input type="radio" name="current" id="fednow" value="graduated" />I have federal loans I want to pay off.</label>
+<label><input type="radio" name="current" id="mix" value="standard" />I have a mix of federal and private - need to streamline payments.</label>
+<label><input type="radio" name="current" id="fedlater" value="extended" />I have federal loans and am okay with a longer repayment.</label>
+
+
+<button type="submit" value="Submit">Submit</button>
+</form>
+
+<p id="response">You got <span id="answer"></span></p>
+
+
+</div>
+<script>
+ 
+    
+	document.getElementById("form1").onsubmit=function() {
+    //displays the response DOM element
+    document.getElementById("response").style.display = "block";
+    
+    //resets the DOM element on submit
+    document.getElementById("answer").innerHTML = "";
+	   
+	  monthly = document.querySelector('input[name = "monthly"]:checked').value;
+
+	  philo = document.querySelector('input[name = "philo"]:checked').value;
+	   
+	  current = document.querySelector('input[name = "current"]:checked').value;
+    
+    // use console.log to see result of each variable to check
+    console.log(monthly);
+    console.log(philo);
+    console.log(current);
+	    
+	  // initialize score variables 
+	  graduated = 0;
+	  standard = 0;
+	  extended = 0;
+	  
+	  //function to calculate score for each question
+	  function eachscore(x){
+	  if(x == "graduated") { graduated = graduated + 1}
+	  if(x == "standard") { standard = standard + 1}
+	  if(x == "extended") { extended = extended + 1}
+	  }
+	  // for the above function, you could also change the 1 to a variable so you could give more points for certain questions
+	  
+	  //call function for each question
+	  eachscore(eval("monthly"));
+	  eachscore(eval("philo"));
+	  eachscore(eval("current"));
+	  
+      // use console.log to see result of each variable to check
+    console.log(graduated);
+    console.log(standard);
+    console.log(extended);
+	  
+	  all = [graduated, standard, extended];
+	  
+	//get the max score  in the array
+	maxscore = Math.max.apply(Math,all);
+    
+    // object holding scores and feedback	
+scores = [{index:0, feedback: "Graduated Repayment Plan"},
+{index:1, feedback: "Standard Repayment Plan"},
+{index:2, feedback: "Extended Repayment Plan"}];
+	
+    //figure out which index # holds the max score 
+	for(i=0; i<all.length; i++) {
+	if(all[i]==maxscore) {
+    //this gets one answer, the last one it encounters with a match
+    //document.getElementById("answer").innerHTML = scores[i].feedback;
+    
+    //this version would allow for appending multiple answers; replace statement above
+    document.getElementById("answer").innerHTML += scores[i].feedback + " ";
+	}
+  }
+	
+	return false; // required to not refresh the page; just leave this here
+	   }// end the submit function
+	
+
+</script>
+
+
+
+</body>
+</html>
+
